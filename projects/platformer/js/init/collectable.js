@@ -39,7 +39,16 @@
     // ALL YOUR CODE GOES BELOW HERE ///////////////////////////////////////
 
     // example:
-    createCollectable(type.steve, 200, 170, 6, 0.7);
+    createCollectable(type.db, 200, 170, 6 ,0.7);
+    createCollectable(type.max, 100, 100, 4);
+    createCollectable(type.steve,400, 500);
+    createCollectable(type.grace, 700, 500);
+    createCollectable(type.kennedi, 600,400);
+    type.db       //worth 10 points 
+    type.max      // worth 20 points
+    type.steve    //worth 30 points
+    type.grace    // worth 40 points
+    type.kennedi  //worth 50 points
 
     // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
