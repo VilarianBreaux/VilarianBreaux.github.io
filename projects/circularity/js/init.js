@@ -46,19 +46,29 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
+            physikz.updatePosition( circle[eachCircle] );
+        	physikz.updatePosition( circle );
+ 	        physikz.updatePosition( circle );
+        	physikz.updatePosition(circle );
+        	physikz.updatePosition( circle );
+        }
+         // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
+            game.checkCirclePositon(circles[0])
+            game.checkCirclePositon(circles[1])
+            game.checkCirclePositon(circles[2])
+            game.checkCirclePositon(circles[3])
+            game.checkCirclePositon(circles[4])
 
-            
-            // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-           
-
-            // TODO 9 : Iterate over the array
-           for (var eachCircle = 0; eachCircle < circles.length; eachCircle++) {
+            // TODO 9 : Iterate over the array {
+           for (var eachCircle = 0; eachCircle < circles.length; eachCircle++) 
                 var eachValue = Circle[eachCircle];
                 physikz.updatePosition(circles[eachCircle]);
                 game.checkCirclePositon(circles[0])
-           }
+                game. checkCirclePosition = function(circle) 
+           { }}
+                
             
-        }
+        
     
         /* 
         This Function should check the position of a circle that is passed to the 
@@ -99,7 +109,7 @@ var init = function (window) {
         
         app.addUpdateable(window.opspark.game);
     }
-};
+
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&
