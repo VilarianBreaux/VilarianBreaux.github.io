@@ -26,7 +26,7 @@ var background = function (window) {
         var background;
         
         // ANIMATION VARIABLES HERE:
-        var tree;
+        var tree = [];
         var buildings = [];
 
         
@@ -38,20 +38,27 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,500, 'blue');
+            var backgroundFill = draw.rect(canvasWidth,500, 'black');
             background.addChild(backgroundFill);
             
             // TODO: 3 - Add a moon and starfield
             var moon = draw.bitmap("img/moon.png");
-            moon.x = 30;
-            moon.y = 300;
-            moon.scaleX = 10.0;
-            moon.scaleY = -20.0;
+            moon.x = 1700;
+            moon.y = 1;
+            moon.scaleX = 0.5;
+            moon.scaleY = 0.5;
             background.addChild(moon);
-            var circle = draw.circle(10,"white", "LightGray", 2);
-            circle.x = canvasWidth * Math.random();
-            circle.y = groundY * Math.random();
-            background.addChild(circle);
+            let numbers = [];
+            for (let i = 0; i < 100; i++) {
+                let num = Math.floor(Math.random() * 1000) + 1;
+                numbers.push(num);
+                var circle = draw.circle(3,"white", "LightGray", 2);
+                circle.x = canvasWidth * Math.random();
+                circle.y = groundY * Math.random();
+                background.addChild(circle);
+            }
+            console.log(numbers) ;
+           
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             for (var i = 0; i < 5; ++i) {
@@ -61,7 +68,18 @@ var background = function (window) {
                 building.y = groundY - buildingHeight;
                 background.addChild(building);
                 buildings.push(building);
-              }
+
+                for (var i = 0; i < 5; ++i) {
+                    var buildingHeight = Math.floor(Math.random() * 200) + 100;
+                    var buildingColor = "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")";
+                    var building = draw.rect(75, buildingHeight, buildingColor, "Black", 1);
+                    building.x = 200 * i;
+                    building.y = groundY - buildingHeight;
+                    background.addChild(building);
+                    buildings.push(building);
+                  }
+                  
+            }
 
              
             
@@ -90,10 +108,15 @@ var background = function (window) {
             }
             
             // TODO 5: Part 2 - Parallax
-            for (var i = 0; i < myArray.length; i++) {
-                var eachElement = myArray[i];
+            for (var i = 0; i < buildings.length; i++) {
+                var building = buildings[i];
+                building.x -= 1;
             }
-
+            tree.x -= halleSpeed * treeSpeed;
+            for (var i = 0; i < buildings.length; i++) {
+                var building = buildings[i];
+                building.x -= halleSpeed * buildingSpeed * (i + 1);
+              }
         } // end of update function - DO NOT DELETE
         
         
