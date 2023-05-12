@@ -75,7 +75,10 @@ var init = function (window) {
     }
     
     // TODO 1 : add a heads-up display to game
-
+    var hud = opspark.makeHud();
+    view.addChild(hud);
+    window.hud = hud;
+    hud.updateScore(10);
 
 
     var game = opspark.createGameManager(app,hud);

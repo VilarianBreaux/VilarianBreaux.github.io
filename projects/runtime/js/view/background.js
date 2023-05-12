@@ -1,4 +1,4 @@
-var background = function (window) {
+ var background = function (window) {
     'use strict';
     
     window.opspark = window.opspark || {};
@@ -38,7 +38,7 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,500, 'black');
+            var backgroundFill = draw.rect(canvasWidth,500, 'Black');
             background.addChild(backgroundFill);
             
             // TODO: 3 - Add a moon and starfield
@@ -52,7 +52,7 @@ var background = function (window) {
             for (let i = 0; i < 100; i++) {
                 let num = Math.floor(Math.random() * 1000) + 1;
                 numbers.push(num);
-                var circle = draw.circle(3,"white", "LightGray", 2);
+                var circle = draw.circle(3,"LightBlue", "", 2);
                 circle.x = canvasWidth * Math.random();
                 circle.y = groundY * Math.random();
                 background.addChild(circle);
@@ -61,17 +61,14 @@ var background = function (window) {
            
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-                 for (var i = 0; i < 5; ++i) {
-                    var buildingHeight = Math.floor(Math.random() * 200) + 100;
-                    var buildingColor = "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")";
-                    var building = draw.rect(75, buildingHeight, buildingColor, "Black", 1);
-                    building.x = 200 * i;
-                    building.y = groundY - buildingHeight;
-                    background.addChild(building);
-                    buildings.push(building);
-                  }
-                  
-            
+            for (var i = 0; i < 27; ++i) {
+                var buildingHeight = (Math.random() * 300) + 50;
+                var building  = draw.rect(75, buildingHeight, "Purple", "lightGray", 1);
+                building.x = 75 * i;
+                building.y = groundY - buildingHeight;
+                background.addChild(building);
+                buildings.push(building);}
+
 
              
             
@@ -101,14 +98,14 @@ var background = function (window) {
             
             // TODO 5: Part 2 - Parallax
             for (var i = 0; i < buildings.length; i++) {
-                var building = buildings[i];
-                building.x -= 1;
+                building = buildings[i]
+                var building;
+                building.x = building.x - 0.1;
+                if (building.x < -200) {
+                    building.x = canvasWidth; }
             }
-            tree.x -= halleSpeed * treeSpeed;
-            for (var i = 0; i < buildings.length; i++) {
-                var building = buildings[i];
-                building.x -= halleSpeed * buildingSpeed * (i + 1);
-              }
+
+              
         } // end of update function - DO NOT DELETE
         
         
