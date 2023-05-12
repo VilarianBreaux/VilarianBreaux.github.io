@@ -78,7 +78,7 @@ var init = function (window) {
     var hud = opspark.makeHud();
     view.addChild(hud);
     window.hud = hud;
-    hud.updateScore(10);
+    hud.updateScore(0);
 
 
     var game = opspark.createGameManager(app,hud);
