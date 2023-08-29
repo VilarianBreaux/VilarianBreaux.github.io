@@ -46,8 +46,14 @@ $(document).ready(function () {
 
   // TODO 2: add a new property to all data shapes
  
-  for (var i = o; i < Array.length; i = i + 1) {
-
+  for (var i = o; i < dataShapes.length; i++) {
+    var currentShape = dataShapes[i];
+    If (currentShape.color === "red"){
+      currentShape.goodBehavior = "bounce";
+    }
+    else if(currentShape.color === "blue"){
+      currentShape.goodBehavior = "blink";
+    }
   }
 
   // TODO 3-a: add a function that handles the static display type
