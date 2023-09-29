@@ -11,10 +11,8 @@ var highScoreElement = $("#highScore");
 
 // TODO 4a: Create the snake, apple and score variables
 // Game Variables
-var snake = {
-};
-var apple = {
-};
+var snake = {};
+var apple = {};
 var score = 0;
 // Constant Variables
 var ROWS = 20;
@@ -47,7 +45,12 @@ function init() {
   // TODO 4b-2: initialize the apple
 makeApple()
   // TODO 4c-2: initialize the snake
+  snake.body = [];
+  makeSnakeSquare(10, 10);
+  snake.head = snake.body[0];
   // TODO 5a: Initialize the interval
+  updateInterval = 
+  setInterval(update, 100);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,10 +62,30 @@ makeApple()
  * collisions with the walls.
  */
 function update() {
+    moveSnake();
+  
+    if (hasHitWall() || hasCollidedWithSnake()) {
+      endGame();
+    }
+  
+    if (hasCollidedWithApple()) {
+      handleAppleCollision();
+    }
+  
   // TODO 5b: Fill in the update function's code block
 }
 
-function checkForNewDirection(event) {
+function checkForNewDirection() {
+  if (activeKey === KEY.LEFT) {
+    snake.head.direction = "left";
+  } else if (activeKey === KEY.UP) {
+    snake.head.direction = "up";
+  } else if (activeKey === KEY.RIGHT) {
+    snake.head.direction = "right";
+  } else if (activeKey === KEY.DOWN) {
+    snake.head.direction = "down";
+  }
+
   /* 
   TODO 6b: Update snake.head.direction based on the value of activeKey.
   
@@ -70,13 +93,11 @@ function checkForNewDirection(event) {
   perpendicular to the current direction
   */
 
-  if (activeKey === KEY.LEFT) {
-    snake.head.direction = "left";
-  }
+  
 
   // FILL IN THE REST
 
-  // console.log(snake.head.direction);     // uncomment me!
+  
 }
 
 function moveSnake() {
@@ -226,8 +247,10 @@ function makeSnakeSquare(row, column) {
 */
 function handleKeyDown(event) {
   // TODO 6a: make the handleKeyDown function register which key is pressed
-  
+  activeKey = event.which;
+  console.log(activeKey);
 }
+
 
 /* Given a gameSquare (which may be a snakeSquare or the apple), position
  * the gameSquare on the screen.
