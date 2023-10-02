@@ -115,14 +115,30 @@ function moveSnake() {
   checkForNewDirection();
 
   /* 
+  
   TODO 7: determine the next row and column for the snake's head
   
   HINT: The snake's head will need to move forward 1 square based on the value
   of snake.head.direction which may be one of "left", "right", "up", or "down"
   */
+  if (snake.head.direction === "left") {
+    snake.head.column = snake.head.column - 1;
+  }
+  if (snake.head.direction === "right") {
+    snake.head.column = snake.head.column - 1;
+  } if (snake.head.direction === "up") {
+    snake.head.column = snake.head.column - 1;
+  } if (snake.head.direction === "down") {
+    snake.head.column = snake.head.column - 1;
+  }
+  repositionSquare(snake.head);
 }
 
 function hasHitWall() {
+  ROWS; 
+COLUMNS; 
+snake.head.row; 
+snake.head.column; 
   /* 
   TODO 8: Should return true if the snake's head has collided with the four walls of the
   board, false otherwise.
@@ -227,9 +243,9 @@ function makeSnakeSquare(row, column) {
   repositionSquare(snakeSquare);
   if (snake.body.length === 0) {
     snakeSquare.element.attr("id", "snake-head");
-  }
   snake.body.push(snakeSquare);
   snake.tail = snakeSquare;
+}
   
   // TODO 4c-1: Fill in this function's code block
 }
