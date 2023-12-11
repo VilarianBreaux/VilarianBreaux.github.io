@@ -33,12 +33,12 @@ function applyAndRender() {
 
 // TODO 1, 2 & 4: Create the applyFilter function here
 function applyFilter() {
-  for (let r = 0; r < image.length; r++) {
-    for (let c = 0; c < image[r].length; c++) {
-      const rgbString = image[r][c];
-      const rgbNumbers = rgbStringToArray(rgbString);
+  for (var r = 0; r < image.length; r++) {
+    for (var c = 0; c < image[r].length; c++) {
+      var rgbString = image[r][c];
+      var rgbNumbers = rgbStringToArray(rgbString);
       rgbNumbers[RED] = 255;
-      const newColor = rgbArrayToString(rgbNumbers);
+      var newColor = rgbArrayToString(rgbNumbers);
       image[r][c] = newColor;
     }
   }
@@ -48,8 +48,8 @@ applyFilter(reddify);
 // TODO 7: Create the applyFilterNoBackground function
 function applyFilterNoBackground() {
   const backgroundColor = image[0][0];
-  for (let r = 0; r < image.length; r++) {
-    for (let c = 0; c < image[r].length; c++) {
+  for (var r = 0; r < image.length; r++) {
+    for (var c = 0; c < image[r].length; c++) {
       if (image[r][c] !== backgroundColor) {
         applyFilter(reddify);
       }
