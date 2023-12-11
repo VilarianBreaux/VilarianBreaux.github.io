@@ -2,8 +2,14 @@
 // as soon as the page loads.
 $(document).ready(function () {
   render($("#display"), image);
-  $("#apply").on("click", applyAndRender);
-  $("#reset").on("click", resetAndRender);
+  $("#apply").on("click", function () {
+    applyFilter(reddify); 
+    render($("#display"), image);
+  });
+
+  $("#reset").on("click", function () {
+    resetAndRender();
+  });
 });
 
 /////////////////////////////////////////////////////////
@@ -32,18 +38,13 @@ function applyAndRender() {
 /////////////////////////////////////////////////////////
 
 // TODO 1, 2 & 4: Create the applyFilter function here
-function applyFilter() {
+function applyFilter(filterFunction) {
   for (var r = 0; r < image.length; r++) {
     for (var c = 0; c < image[r].length; c++) {
-      var rgbString = image[r][c];
-      var rgbNumbers = rgbStringToArray(rgbString);
-      rgbNumbers[RED] = 255;
-      var newColor = rgbArrayToString(rgbNumbers);
-      image[r][c] = newColor;
+      image[r][c] = filterFunction(image[r][c]);
     }
   }
 }
-applyFilter(reddify);
 
 // TODO 7: Create the applyFilterNoBackground function
 function applyFilterNoBackground() {
@@ -51,12 +52,13 @@ function applyFilterNoBackground() {
   for (var r = 0; r < image.length; r++) {
     for (var c = 0; c < image[r].length; c++) {
       if (image[r][c] !== backgroundColor) {
-        applyFilter(reddify);
+        image[r][c] = reddify(image[r][c]); 
       }
     }
   }
 }
-applyFilterNoBackground();
+
+
 
 // TODO 5: Create the keepInBounds function
 function keepInBounds(number) {
@@ -67,16 +69,21 @@ console.log(keepInBounds(300));
 console.log(keepInBounds(127));  
 
 // TODO 3: Create reddify function
-function reddify(array) {
-  array[RED] = 200;
+function reddify(rgbString) {
+  var rgbNumbers = rgbStringToArray(rgbString);
+  rgbNumbers[RED] = 200;
+  return rgbArrayToString(rgbNumbers);
 }
 // TODO 6: Create more filter functions
-function decreaseBlue(array) {
-  array[BLUE] = keepInBounds(array[BLUE] - 50);
+function decreaseBlue(rgbString) {
+  var rgbNumbers = rgbStringToArray(rgbString);
+  rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] - 50);
+  return rgbArrayToString(rgbNumbers);
 }
-
-function increaseGreenByBlue(array) {
-  array[GREEN] = keepInBounds(array[GREEN] + array[BLUE]);
+function increaseGreenByBlue(rgbString) {
+  var rgbNumbers = rgbStringToArray(rgbString);
+  rgbNumbers[GREEN] = keepInBounds(rgbNumbers[GREEN] + rgbNumbers[BLUE]);
+  return rgbArrayToString(rgbNumbers);
 }
 applyFilter(reddify);
 applyFilter(decreaseBlue);
