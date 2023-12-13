@@ -2,9 +2,10 @@
 // as soon as the page loads.
 $(document).ready(function () {
   render($("#display"), image);
+
   $("#apply").on("click", function () {
-    applyFilter(reddify); 
-    render($("#display"), image);
+ 
+    applyAndRender();
   });
 
   $("#reset").on("click", function () {
@@ -26,7 +27,13 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-
+  applyFilter(function (pixel) {
+    pixel = reddify(pixel);
+    pixel = decreaseBlue(pixel);
+    pixel = increaseGreenByBlue(pixel);
+    return pixel;
+  });
+  
   
 
   // do not change the below line of code
@@ -85,7 +92,3 @@ function increaseGreenByBlue(rgbString) {
   rgbNumbers[GREEN] = keepInBounds(rgbNumbers[GREEN] + rgbNumbers[BLUE]);
   return rgbArrayToString(rgbNumbers);
 }
-applyFilter(reddify);
-applyFilter(decreaseBlue);
-applyFilter(increaseGreenByBlue);
-
